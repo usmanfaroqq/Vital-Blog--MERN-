@@ -9,7 +9,7 @@ const UpperNavbar = () => {
             <Link className="top__banner-text" to="/">  About</Link>
             <Link className="top__banner-text" to="/"> Events</Link>
             <Link className="top__banner-text" to="/"> Write for us</Link>
-            <Link className="top__banner-text" to="/"> In the press</Link>
+            <Link className="top__banner-text for-hidden" to="/"> In the press</Link>
         </div>
         <div>
             <Link className="top__banner-text" to="/login">
