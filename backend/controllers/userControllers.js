@@ -64,10 +64,10 @@ module.exports.loginController = async (req, res) => {
   }
   const { email, password } = req.body;
   try {
-    const user = await userSchema.findOne({ email });
+    const user = await userSchema.findOne({ email }); // finding email
     if (user) {
       const matched = await bcrypt.compare(password, user.password);
-      if (matched) {
+      if (matched) { // login
         const token = createToken(user);
         return res
           .status(200)
