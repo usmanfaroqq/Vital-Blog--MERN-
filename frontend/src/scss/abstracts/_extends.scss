@@ -1,15 +1,7 @@
 %flex-center{
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-%navbar-element{
-    text-decoration: none;
-    font-size: 1.9rem;
-    font-weight: 600;
-    color: $logoColor;
-    padding: 0 1rem;
-    cursor: pointer;
+    align-items: center;
 }
 %button{
     color:$white;
@@ -18,7 +10,7 @@
     padding: 15px 18px 30px 15px;
     border: none;
     cursor: pointer;
-    height: 32px;
+    height: 30px;
     font-size: 1.5rem;
     box-shadow: 0 0 4px #999;
     width: 100%;

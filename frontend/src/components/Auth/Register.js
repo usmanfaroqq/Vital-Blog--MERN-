@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -15,7 +16,7 @@ const Register = () => {
             <div className="account">
               <div className="account__section">
                 <h1>
-                  Create your <span>MERN Blog</span> account{" "}
+                  Create your account
                 </h1>
                 <form>
                   <div className="group">
@@ -58,6 +59,7 @@ const Register = () => {
                     />
                   </div>
                 </form>
+                <h4>Have an account <Link to="/login">Login here</Link></h4>
               </div>
             </div>
           </Col>
