@@ -15,7 +15,9 @@ const UpperNavbar = () => {
   const Links = user ? (
     <>
       {" "}
-      <Link to="/create-post" className="top__banner-text gap-2">Create Post</Link>
+      <Link to="/create-post" className="top__banner-text gap-2">
+        Create Post
+      </Link> //
       <Link className="top__banner-text gap-2" to="/dashboard">
         {user.name}
       </Link>{" "}
@@ -27,7 +29,7 @@ const UpperNavbar = () => {
   ) : (
     <>
       {" "}
-      <Link  to="/login" className="top__banner-text  ">
+      <Link to="/login" className="top__banner-text  ">
         Login
       </Link>{" "}
       / /
