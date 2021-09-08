@@ -4,6 +4,7 @@ import {
   SET_LOADER,
   REGISTER_ERRORS,
   CLOSE_LOADER,
+  LOGIN_ERRORS,
 } from "../types/AuthTypes";
 
 export const postRegister = (state) => {
@@ -44,6 +45,10 @@ export const postLogin = (state) => {
       dispatch({ type: CLOSE_LOADER });
       localStorage.setItem("myToken", data.jwtToken);
       dispatch({ type: SET_TOKEN, payload: data.jwtToken });
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({type: LOGIN_ERRORS, payload: error.response.data.errors,
+      }); // getting errors
+    }
   };
 };

@@ -4,8 +4,12 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { postLogin } from "../../redux/asyncMethods/AuthMethods";
 import { useSelector, useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+
+
 const Login = () => {
   const dispatch = useDispatch();
+  const {loginErrors, loading, user} = useSelector(state => state.AuthReducer)
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -16,24 +20,41 @@ const Login = () => {
       [event.target.name]: event.target.value,
     });
   };
-  const useLogin = (event) => {
+  const userLogin = (event) => {
     event.preventDefault();
-    dispatch(useLogin(state));
+    dispatch(postLogin(state));
   };
-
+  useEffect(() =>  {
+    if (loginErrors.length > 0) {
+      loginErrors.map((error) => toast.error(error.msg));
+    }
+  }, [loginErrors, user])
   return (
     <>
       <Helmet>
         <title>User Login</title>
         <meta name="description" content="User Login" />
       </Helmet>
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+            color: "red",
+            fontSize: "1.5rem",
+          },
+        }}
+      />
+      
       <Container>
         <Row>
           <Col md={12}>
             <div className="account">
               <div className="account__section">
                 <h1>Please login your account</h1>
-                <form onSubmit={useLogin}>
+                <form onSubmit={userLogin}>
                   <div className="group">
                     <input
                       type="email"
@@ -58,7 +79,7 @@ const Login = () => {
                     <input
                       type="submit"
                       className="loginRegisterBtn"
-                      value="Signup"
+                      value={loading ? '......' : "Login"}
                     />
                   </div>
                 </form>
