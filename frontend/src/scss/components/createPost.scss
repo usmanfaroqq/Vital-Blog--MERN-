@@ -13,12 +13,18 @@
     line-height: 10px;
   }
   &-card {
-    
   }
   &-group {
     & h2 {
       border-bottom: 2px solid $silver;
     }
   }
+  &-blogUrlBtn {
+    margin-top: 4.9rem;
+    & button {
+      @extend %smallButton;
+      height: 5px;
+      font-size: 1.2rem;
+    }
+  }
 }
-
