@@ -40,10 +40,11 @@ const CreatePost = () => {
                               controlId="formFile"
                               className="mb-3 selectGroup"
                             >
-                              <Form.Label >
-                              Featured Image *
-                              </Form.Label>
-                              <Form.Control type="file"  className="selectGroup-text" />
+                              <Form.Label>Featured Image *</Form.Label>
+                              <Form.Control
+                                type="file"
+                                className="selectGroup-text"
+                              />
                             </Form.Group>
                           </div>
                         </Col>
@@ -80,6 +81,44 @@ const CreatePost = () => {
                             </Form.Select>
                           </div>
                         </Col>
+                      </Row>
+                    </div>
+
+                    <div>
+                      <Row>
+                      <Col md={6}>
+                          <div className="textInputGroup">
+                            <label htmlFor="description">
+                              Meta description
+                            </label>
+                            <textarea
+                              name="description"
+                              id=""
+                              cols="30"
+                              rows="10"
+                              className="textInputGroup__control"
+                              placeholder="meta description...."
+                              maxLength="200"
+                            ></textarea>
+                            <p className="description-p"></p>
+                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <div className="textInputGroup">
+                            <label htmlFor="title">Blog url</label>
+                            <input
+                              type="text"
+                              name="title"
+                              id="title"
+                              className="textInputGroup__control"
+                              placeholder="Blog url"
+                            />
+                          </div>
+                          <div>
+                            
+                          </div>
+                        </Col>
+                        
                       </Row>
                     </div>
                   </div>

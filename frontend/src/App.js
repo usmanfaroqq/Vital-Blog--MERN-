@@ -10,6 +10,7 @@ import "./scss/main.scss";
 import PrivateRoutes from "./Private/PrivateRoutes";
 import RouteLinks from "./Private/RouteLinks";
 import CreatePost from "./components/Create/CreatePost";
+import UpperNavbar from "./components/common/Navbar/UpperNavbar";
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
         <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard" exact  component={props => <> <Navbar/> <Dashboard/></> }/>
-        <PrivateRoutes path="/new-post" exact  component={props => <> <Navbar/> <CreatePost/></> }/>
+        <PrivateRoutes path="/new-post" exact  component={props => <> <UpperNavbar/> <CreatePost/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>
