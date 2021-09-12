@@ -55,7 +55,7 @@ const Register = () => {
           },
         }}
       />
-      ;
+      
       <Container>
         <Row>
           <Col md={12}>

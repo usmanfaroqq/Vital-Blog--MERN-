@@ -6,8 +6,10 @@ import "react-quill/dist/quill.snow.css";
 import swal from "sweetalert";
 import { createAction } from "../../redux/asyncMethods/PostMethods";
 import { useDispatch, useSelector } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 
-const CreatePost = (event) => {
+const CreatePost = (props) => {
+  const {createErrors} = useSelector((state) => state.PostReducer)
   const dispatch = useDispatch();
   const {
     user: { _id, name },
@@ -88,13 +90,30 @@ const CreatePost = (event) => {
     postData.append("id", _id);
     dispatch(createAction(postData));
   };
+  // showing error message
+  useEffect(() => {
+    if(createErrors.length !== 0){
+      createErrors.map((err) => toast.error(err.msg))
+    }
+  },[createErrors])
   return (
     <>
       <Helmet>
         <title>New Post - Vital Blog</title>
         <meta name="description" content="Create New Post" />
       </Helmet>
-
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+            color: "red",
+            fontSize: "1.5rem",
+          },
+        }}
+      />
       <div className="create__post">
         <Container>
           <Row>
