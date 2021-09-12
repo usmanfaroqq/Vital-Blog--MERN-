@@ -5,9 +5,7 @@ import {
   SET_LOADER,
   CLOSE_LOADER,
   REDIRECT_TRUE,
-  REDIRECT_FALSE,
   SET_MESSAGE,
-  REMOVE_MESSAGE,
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 export const createAction = (formData) => {
@@ -19,9 +17,7 @@ export const createAction = (formData) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const {
-        data: { msg },
-      } = await axios.post("createNew_post", formData, config);
+      const {data:  {msg} } = await axios.post("createNew_post", formData, config);
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: REMOVE_ERRORS });
       dispatch({ type: REDIRECT_TRUE });

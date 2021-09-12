@@ -7,8 +7,11 @@ import swal from "sweetalert";
 import { createAction } from "../../redux/asyncMethods/PostMethods";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { useHistory } from "react-router-dom";
+
 
 const CreatePost = (props) => {
+  let history = useHistory();
   const {createErrors, redirect} = useSelector((state) => state.PostReducer)
   const dispatch = useDispatch();
   const {
@@ -78,6 +81,8 @@ const CreatePost = (props) => {
 
   const createNewPost = (event) => {
     event.preventDefault();
+    swal("Good job!", "You clicked the button!", "success");
+
     const { title, description, image } = inputState;
     const postData = new FormData();
     postData.append("title", title);
@@ -92,9 +97,9 @@ const CreatePost = (props) => {
   };
   // showing error message
   useEffect(() => {
-    if(redirect){
-      props.history.push("/dashboard");
-    }
+    // if (redirect){
+    //   props.history.push("/dashboard");
+    // }
     if(createErrors.length !== 0){
       createErrors.map((err) => toast.error(err.msg))
     }

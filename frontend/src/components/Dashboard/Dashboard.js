@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const { redirect, message } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,7 +15,7 @@ const Dashboard = () => {
       toast.success(message);
       dispatch({ type: REMOVE_MESSAGE });
     }
-  }, []);
+  }, [message]);
   return (
     <>
       <Helmet>

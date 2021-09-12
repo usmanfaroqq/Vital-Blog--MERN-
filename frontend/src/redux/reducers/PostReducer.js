@@ -8,12 +8,15 @@ import {
   SET_MESSAGE,
   REMOVE_MESSAGE,
 } from "../types/PostTypes";
+
+
 const initState = {
   loading: false,
   createErrors: [],
   redirect: false,
   message: "",
 };
+
 
 const PostReducer = (state = initState, action) => {
   const { type, payload } = action;
