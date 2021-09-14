@@ -1,0 +1,15 @@
+.dashboard {
+  margin-top: 5rem;
+  user-select: none;
+  & h1 {
+    @extend %pageTitle;
+  }
+  &__body{
+  margin-top: 5rem;
+    &-header{
+        font-family: $headline2;
+        font-weight:500;
+       @extend %headlineBorderBottom;
+    }
+  }
+}

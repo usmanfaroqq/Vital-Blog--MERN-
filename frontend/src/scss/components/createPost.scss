@@ -1,25 +1,16 @@
 .create__post {
-  margin-top:5rem;
+  margin-top: 5rem;
   width: 100%;
   font-family: $headline2;
   @extend %flex-center;
-
   user-select: none;
   & h1 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2.2rem;
-    font-family: $headline2;
-    text-transform: uppercase;
-    line-height: 10px;
-  }
-  &-card {
+    @extend %pageTitle;
   }
   &-group {
-    
     & h2 {
-      margin-top:3.2rem;
-      border-bottom: 2px solid $silver;
+      margin-top: 3.2rem;
+      @extend %headlineBorderBottom;
     }
   }
   &-blogUrlBtn {
@@ -39,7 +30,6 @@
         radial-gradient(circle, transparent 1%, $RegisterButtonBackground 1%)
         center/15000%;
       color: white;
-
     }
     &:active {
       background-color: #292d3e;
