@@ -11,6 +11,7 @@ import PrivateRoutes from "./Private/PrivateRoutes";
 import RouteLinks from "./Private/RouteLinks";
 import CreatePost from "./components/Create/CreatePost";
 import UpperNavbar from "./components/common/Navbar/UpperNavbar";
+import ProfileSetting from "./components/Setting/ProfileSetting/ProfileSetting";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
         <PrivateRoutes path="/new-post" exact  component={props => <> <UpperNavbar/> <CreatePost/></> }/>
+        <PrivateRoutes path="/me/setting" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>

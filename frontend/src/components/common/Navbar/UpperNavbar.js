@@ -46,7 +46,7 @@ const UpperNavbar = () => {
             </Link>{" "}
           </Dropdown.Item>
           <Dropdown.Item >
-          <Link className="dropdownText" to="/dashboard">
+          <Link className="dropdownText" to="/me/setting">
               Setting
             </Link>{" "}
           </Dropdown.Item>
