@@ -73,7 +73,7 @@ const Dashboard = () => {
                       <div className="dashboard__body-card" key={post._id}>
                         <div className="dashboard__body-middle">
                           <h2>
-                            <Link style={{ textDecoration: "none" }}>
+                            <Link style={{ textDecoration: "none", color: "black" }}>
                               {post.title}
                             </Link>
                           </h2>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                           {/* <p><BiShare className="dashboard__body-lower-btn "  /></p> */}
                           <p>
                             <Dropdown  >
-                              <Dropdown.Toggle className="dashboard__body-lower-btn "  style={{backgroundColor:'white', border:'none', outline:'none', color: 'black'}}
+                              <Dropdown.Toggle className="dashboard__body-lower-btn "  style={{backgroundColor:'white', border:'none', outline: 'none', color: 'black'}}
                                 id="dropdown-basic">
                                 <BsThreeDots/>
                               </Dropdown.Toggle>

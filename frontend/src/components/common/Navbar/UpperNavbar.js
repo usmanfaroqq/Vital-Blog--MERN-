@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOGOUT } from "../../../redux/types/AuthTypes";
@@ -12,38 +12,56 @@ const UpperNavbar = () => {
 
     dispatch({ type: LOGOUT });
   };
-  const link1 = user
-    ? (
-      (
-        <Link className="top__banner-text" to="/">
-          {" "}
-          Home
-        </Link>
-      ))
-    : (
-        <Link className="top__banner-text" to="/dashboard">
-          {" "}
-          Write your content
-        </Link>
-      );
+  const link1 = user ? (
+    <Link className="top__banner-text" to="/">
+      {" "}
+      Home
+    </Link>
+  ) : (
+    <Link className="top__banner-text" to="/dashboard">
+      {" "}
+      Write your content
+    </Link>
+  );
   const Links = user ? (
     <>
       {" "}
       <Link to="/new-post" className="top__banner-text ">
         Create Post
-      </Link>{" "}
-      //
-      <Link className="top__banner-text gap-2" to="/dashboard">
-        {user.name}
-      </Link>{" "}
-      / /
-      <span
-        className="top__banner-text  gap-2"
+      </Link>{" "} //
+      
+      <Dropdown>
+        <Dropdown.Toggle id="dropdown-basic" className="top__banner-text gap-2 dropdown"  style={{border:'none', outline:'none', color: 'white' ,padding: 0, marginTop: 0 , marginBottom: "4px"}}>
+          <span className="dropdown__text" >{user.name}</span>
+        </Dropdown.Toggle>
+        <Dropdown.Menu className="dropdownMenu" >
+          <Dropdown.Item>
+            <Link className="dropdownText"  to="/dashboard">
+              My Blogs
+            </Link>{" "}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link className="dropdownText"  to="/new-post">
+              Write a blog
+            </Link>{" "}
+          </Dropdown.Item>
+          <Dropdown.Item >
+          <Link className="dropdownText" to="/dashboard">
+              Setting
+            </Link>{" "}
+          </Dropdown.Item>
+          <Dropdown.Item >
+          <span
+        className="dropdownText"
         onClick={logout}
-        style={{ cursor: "pointer" }}
       >
         Logout
       </span>{" "}
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+      / /
+      
     </>
   ) : (
     <>
@@ -73,7 +91,7 @@ const UpperNavbar = () => {
             Policy
           </Link>
         </div>
-        <div>{Links}</div>
+        <div className="d-flex">{Links}</div>
       </Container>
     </div>
   );

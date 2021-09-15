@@ -5,6 +5,23 @@
   font-size: 13px;
   user-select: none;
 }
+.dropdown {
+  background-color: #212529 !important;
+  font-size: 13px !important;
+}
+.dropdownText {
+    user-select: none;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-family: $headline2;
+  }
+.dropdownMenu{
+  padding: 10px;
+  margin-top: 1rem;
+  width: 200px;
+  height: 150px;
+}
 @include responsive(tablet) {
   .for-hidden {
     display: none;
