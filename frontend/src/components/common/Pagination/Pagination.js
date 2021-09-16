@@ -25,9 +25,7 @@ const DashboardPagination = ({ count, page, perPage }) => {
     }
     return store;
   };
-  return (
-      <Pagination  className="pagination">{links()}</Pagination>
-  );
+      return totalPages ?  <Pagination  className="pagination">{links()}</Pagination> : ''
 };
 
 export default DashboardPagination;
