@@ -114,7 +114,9 @@ const Dashboard = () => {
                 ) : (
                   <DashboardSkeleton length={posts.length} />
                 )}
-                <DashboardPagination page={page} perPage={perPage} count={count}/>
+              <div className="dashboard__body-pagination">
+              <DashboardPagination page={page} perPage={perPage} count={count} style={{justifyContent:"flex-end"}}/>
+              </div>
               </Col>
             </div>
           </div>

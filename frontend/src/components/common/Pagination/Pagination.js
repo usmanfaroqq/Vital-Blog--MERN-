@@ -15,21 +15,19 @@ const DashboardPagination = ({ count, page, perPage }) => {
   }
   const links = () => {
     const store = [];
-    let active = [];
+    let active = 0;
     for (let number = startLoop; number <= endLoop; number++) {
       store.push(
         
           <Pagination.Item  key={number} active={number === active} >
-              <Link to={`/dashboard/${number}`}>{number}</Link>
+              <Link className="link" to={`/dashboard/${number}`}>{number}</Link>
           </Pagination.Item>
       );
     }
     return store;
   };
   return (
-    <div>
-      <Pagination >{links()}</Pagination>
-    </div>
+      <Pagination  className="pagination">{links()}</Pagination>
   );
 };
 

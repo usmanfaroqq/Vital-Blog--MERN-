@@ -44,5 +44,9 @@
         font-size: 14px !important;
       }
     }
+    .pagination{
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
