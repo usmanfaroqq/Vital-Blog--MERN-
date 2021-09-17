@@ -11,8 +11,14 @@ import PrivateRoutes from "./Private/PrivateRoutes";
 import RouteLinks from "./Private/RouteLinks";
 import CreatePost from "./components/Create/CreatePost";
 import UpperNavbar from "./components/common/Navbar/UpperNavbar";
-import ProfileSetting from "./components/Setting/ProfileSetting/ProfileSetting";
 import EditPost from "./components/Create/EditPost";
+import UnderConstruction from "./components/common/UnderConstruction/UnderConstruction";
+
+
+// under construction routes
+// import ProfileSetting from "./components/Setting/ProfileSetting/ProfileSetting";
+
+
 
 const App = () => {
   return (
@@ -26,7 +32,7 @@ const App = () => {
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard/:page?" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
         <PrivateRoutes path="/new-post" exact  component={props => <> <UpperNavbar/> <CreatePost/></> }/>
-        <PrivateRoutes path="/me/setting" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
+        <PrivateRoutes path="/me/setting" exact  component={props => <> <UpperNavbar/> <UnderConstruction/></> }/>
         <PrivateRoutes path="/edit/:id" exact  component={props => <> <UpperNavbar/> <EditPost/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
