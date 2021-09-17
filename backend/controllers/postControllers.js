@@ -90,7 +90,19 @@ const fetchPosts = async (req, res) => {
   }
 };
 
+// fetch single post
+const fetchSinglePost = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const singlePost = await postSchema.find({_id: id})
+    return res.status(200).json({singlePost})
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message });
+  }
+};
+
 module.exports = {
   createPost,
   fetchPosts,
+  fetchSinglePost,
 };

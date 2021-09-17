@@ -6,12 +6,12 @@ import {
   CLOSE_LOADER,
   REDIRECT_TRUE,
   SET_MESSAGE,
-  SET_POSTS
+  SET_POSTS,
+  SET_POST
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 
-
-
+// Posting content
 export const createAction = (formData) => {
   return async (dispatch, getState) => {
     const {
@@ -36,9 +36,9 @@ export const createAction = (formData) => {
       dispatch({ type: POST_ERRORS, payload: errors });
     }
   };
-}; // Posting content
+};
 
-
+// fetching post for user dashboard
 export const fetchPosts = (id, page) => {
   return async (dispatch, getState) => {
     const {
@@ -51,11 +51,36 @@ export const fetchPosts = (id, page) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data: {postData, count, perPage} } = await axios.get(`/posts/${id}/${page}`, config);
-      dispatch({type: CLOSE_LOADER});
-      dispatch({ type: SET_POSTS, payload: {postData , count, perPage} });
+      const {
+        data: { postData, count, perPage },
+      } = await axios.get(`/posts/${id}/${page}`, config);
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: SET_POSTS, payload: { postData, count, perPage } });
     } catch (error) {
+      dispatch({ type: CLOSE_LOADER });
+    }
+  };
+};
+
+// fetching singlePost for edit
+export const fetchSinglePost = (id) => {
+  return async(dispatch, getState) => {
+    const {
+      AuthReducer: { token },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: SET_LOADER });
+    try {
+      const {data: {singlePost}} = await axios.get(`/post/${id}`)
       dispatch({ type: CLOSE_LOADER})
+      dispatch({ type : SET_POST, payload: singlePost})
+    } catch (error) {
+      dispatch({ type: CLOSE_LOADER });
+      console.log(error.message);
     }
   };
 };

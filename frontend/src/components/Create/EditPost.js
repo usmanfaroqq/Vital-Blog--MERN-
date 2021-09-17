@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import {useSelector, useDispatch} from "react-redux"
+import { fetchSinglePost } from "../../redux/asyncMethods/PostMethods";
+
 
 const EditPost = () => {
   const [editState, setEditState] = useState({
@@ -14,6 +17,10 @@ const EditPost = () => {
   // Body post content React quill
   const [value, setValue] = useState("");
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSinglePost(id))
+  },[])
   return (
     <div>
       <Helmet>

@@ -7,3 +7,4 @@ export const REDIRECT_FALSE = "REDIRECT_FALSE";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export const SET_POSTS = "SET_POSTS";
+export const SET_POST = "SET_POST";
