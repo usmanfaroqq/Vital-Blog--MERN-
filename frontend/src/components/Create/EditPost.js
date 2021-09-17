@@ -4,23 +4,34 @@ import { useParams } from "react-router-dom";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import {useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 import { fetchSinglePost } from "../../redux/asyncMethods/PostMethods";
-
+import { POST_RESET } from "../../redux/types/PostTypes";
 
 const EditPost = () => {
   const [editState, setEditState] = useState({
-    title: '',
-    description: '',
-  })
+    title: "",
+    description: "",
+  });
   const { id } = useParams();
   // Body post content React quill
   const [value, setValue] = useState("");
 
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.PostReducer);
+  const { post, postStatus } = useSelector((state) => state.FetchSinglePost);
   useEffect(() => {
-    dispatch(fetchSinglePost(id))
-  },[])
+    if (postStatus) {
+      setEditState({
+        title: post.title,
+        description: post.description,
+      });
+      setValue(post.body);
+      dispatch({ type: POST_RESET });
+    } else {
+      dispatch(fetchSinglePost(id));
+    }
+  }, [post]);
   return (
     <div>
       <Helmet>
@@ -44,7 +55,9 @@ const EditPost = () => {
                         className="textInputGroup__control"
                         placeholder="Blog Title"
                         value={editState.value}
-                        onChange={(e) => setEditState({...editState, title: e.target.value})}
+                        onChange={(e) =>
+                          setEditState({ ...editState, title: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -74,10 +87,15 @@ const EditPost = () => {
                             className="textInputGroup__control"
                             placeholder="meta description...."
                             maxLength="200"
-                            onChange={(e) => setEditState({...editState, description: e.target.value})}
+                            onChange={(e) =>
+                              setEditState({
+                                ...editState,
+                                description: e.target.value,
+                              })
+                            }
                           ></textarea>
                           <p className="description-p">
-                          {" "}
+                            {" "}
                             {editState.description
                               ? editState.description.length
                               : 0}{" "}
@@ -88,7 +106,8 @@ const EditPost = () => {
                         <div>
                           <Form.Group
                             controlId="formFile"
-                            className="mb-3 selectGroup">
+                            className="mb-3 selectGroup"
+                          >
                             <Form.Label>Featured Image *</Form.Label>
                             <Form.Control
                               type="file"

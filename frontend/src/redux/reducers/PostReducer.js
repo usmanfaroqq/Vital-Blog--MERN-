@@ -10,6 +10,7 @@ import {
   SET_POSTS,
   SET_POST,
   POST_REQUEST,
+  POST_RESET,
 } from "../types/PostTypes";
 
 const initState = {
@@ -70,6 +71,8 @@ export const FetchSinglePost = (state = initState, action) => {
     return { ...state, post: payload };
   } else if (type === POST_REQUEST) {
     return { ...state, postStatus: true };
+  } else if (type === POST_RESET) {
+    return { ...state, postStatus: false };
   } else {
     return state;
   }
