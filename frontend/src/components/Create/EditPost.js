@@ -5,63 +5,67 @@ import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSinglePost, updatePost} from "../../redux/asyncMethods/PostMethods";
-import { POST_RESET ,  REMOVE_UPDATE_ERRORS } from "../../redux/types/PostTypes";
+import {
+  fetchSinglePost,
+  updatePost,
+} from "../../redux/asyncMethods/PostMethods";
+import { POST_RESET, REMOVE_UPDATE_ERRORS } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
-
+import PostEditPageProgress from "../../skelatons/PostEditPageProgress";
 
 const EditPost = () => {
   const { id } = useParams();
   const { push } = useHistory();
   // Body post content React quill
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [editState, setEditState] = useState({
     title: "",
     description: "",
   });
 
   const dispatch = useDispatch();
-  const { loading , redirect} = useSelector((state) => state.PostReducer);
+  const { loading, redirect } = useSelector((state) => state.PostReducer);
   const { post, postStatus } = useSelector((state) => state.FetchSinglePost);
-  const {updateErrors} = useSelector((state) => state.UpdatePost)
+  const { updateErrors } = useSelector((state) => state.UpdatePost);
   useEffect(() => {
     if (postStatus) {
       setEditState({
         title: post.title,
         description: post.description,
       });
-			setValue(post.body);
+      setValue(post.body);
       dispatch({ type: POST_RESET });
     } else {
       dispatch(fetchSinglePost(id));
     }
   }, [post]);
 
-
-  const updateEditedPost = event => {
+  const updateEditedPost = (event) => {
     event.preventDefault();
-    console.log(value)
-    dispatch(updatePost({
-      title: editState.title,
-      body: value,
-      description: editState.description,
-      id: post._id
-    }))
-  }
+    console.log(value);
+    dispatch(
+      updatePost({
+        title: editState.title,
+        body: value,
+        description: editState.description,
+        id: post._id,
+      })
+    );
+  };
 
   useEffect(() => {
-    if(updateErrors.length > 0){
-      updateErrors.map(error => toast.error(error.msg))
+    if (updateErrors.length > 0) {
+      updateErrors.map((error) => toast.error(error.msg));
+      dispatch({type: REMOVE_UPDATE_ERRORS})
     }
-  },[updateErrors])
+  }, [updateErrors]);
   useEffect(() => {
-    if(redirect){
-      push('/dashboard')
+    if (redirect) {
+      push("/dashboard");
     }
   }, [redirect]);
 
-
-  return (
+  return !loading ? (
     <div>
       <Helmet>
         <title>Edit Post - Vital Blog</title>
@@ -82,6 +86,8 @@ const EditPost = () => {
       <div className="create__post">
         <Container>
           <Row>
+          <h1 className="editMyBlogTitle">Edit your blog</h1>
+
             <Col md={12}>
               <form onSubmit={updateEditedPost}>
                 <div className="create__post-card">
@@ -109,7 +115,7 @@ const EditPost = () => {
                     </label>
                     <ReactQuill
                       theme="snow"
-                      id='body'
+                      id="body"
                       placeholder="Lorem Ispum..."
                       value={value}
                       onChange={setValue}
@@ -117,8 +123,7 @@ const EditPost = () => {
                   </div>
 
                   <div>
-                    <Row>
-                      <Col md={6}>
+                      <Col md={12}>
                         <div className="textInputGroup">
                           <label htmlFor="description">Meta description</label>
                           <textarea
@@ -151,26 +156,10 @@ const EditPost = () => {
                           </p>
                         </div>
                       </Col>
-                      {/* <Col md={6}>
-                        <div>
-                          <Form.Group
-                            controlId="formFile"
-                            className="mb-3 selectGroup"
-                          >
-                            <Form.Label>Featured Image *</Form.Label>
-                            <Form.Control
-                              type="file"
-                              name="image"
-                              className="selectGroup-text"
-                            />
-                          </Form.Group>
-                        </div>
-                      </Col> */}
-                    </Row>
                     <div className="group">
                       <input
                         type="submit"
-                        value="Submit Post"
+                        value="Update Post"
                         className="create__post-submitBlogBtn"
                       />
                     </div>
@@ -182,6 +171,8 @@ const EditPost = () => {
         </Container>
       </div>
     </div>
+  ) : (
+    <PostEditPageProgress />
   );
 };
 

@@ -102,7 +102,10 @@ const Dashboard = () => {
                                   <Link to={`/edit/${post._id}`} className="dashboard__body-lower-link">Edit</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                <p>Delete</p>
+                                  <Link to={`/edit/cover-photo/${post._id}`} className="dashboard__body-lower-link">Edit Cover Photo</Link>
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                <Link to='#' className="dashboard__body-lower-link">Delete Post</Link>
                                 </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
