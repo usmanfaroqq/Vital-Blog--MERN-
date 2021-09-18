@@ -11,7 +11,7 @@ import { POST_RESET } from "../../redux/types/PostTypes";
 const EditPost = () => {
   const { id } = useParams();
   // Body post content React quill
-  // const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
   const [editState, setEditState] = useState({
     title: "",
     description: "",
@@ -26,21 +26,23 @@ const EditPost = () => {
         title: post.title,
         description: post.description,
       });
+			setValue(post.body);
       dispatch({ type: POST_RESET });
     } else {
       dispatch(fetchSinglePost(id));
     }
   }, [post]);
-  console.log(post)
-  // const updateEditedPost = event => {
-  //   event.preventDefault();
-  //   // console.log(value)
-  //   // dispatch(updatePost({
-  //   //   title: editState.title,
-  //   //   body: value,
-  //   //   description: editState.description,
-  //   // }))
-  // }
+
+
+  const updateEditedPost = event => {
+    event.preventDefault();
+    // console.log(value)
+    // dispatch(updatePost({
+    //   title: editState.title,
+    //   body: value,
+    //   description: editState.description,
+    // }))
+  }
   console.log(post)
   return (
     <div>
@@ -52,7 +54,7 @@ const EditPost = () => {
         <Container>
           <Row>
             <Col md={12}>
-              <form>
+              <form onSubmit={updateEditedPost}>
                 <div className="create__post-card">
                   <div className="create__post-group">
                     <h2>Post Information</h2>
@@ -72,7 +74,7 @@ const EditPost = () => {
                     </div>
                   </div>
 
-                  {/* <div className="textInputGroup">
+                  <div className="textInputGroup">
                     <label htmlFor="body">
                       Describe your content in detail...
                     </label>
@@ -83,7 +85,7 @@ const EditPost = () => {
                       value={value}
                       onChange={setValue}
                     />
-                  </div> */}
+                  </div>
 
                   <div>
                     <Row>
