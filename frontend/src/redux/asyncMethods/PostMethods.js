@@ -104,6 +104,8 @@ export const updatePost = (editedData) => {
     try {
       const {data} = await axios.post("/update", editedData, config)
       dispatch({type: CLOSE_LOADER})
+      dispatch({type: REDIRECT_TRUE})
+      dispatch({type: SET_MESSAGE, payload: data.msg})
     } catch (error) {
       const {response : {data: {errors}}} = error;
       dispatch({ type: CLOSE_LOADER });

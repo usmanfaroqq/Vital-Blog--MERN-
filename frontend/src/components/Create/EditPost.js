@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const EditPost = () => {
   const { id } = useParams();
+  const { push } = useHistory();
   // Body post content React quill
   const [value, setValue] = useState('');
   const [editState, setEditState] = useState({
@@ -20,7 +21,7 @@ const EditPost = () => {
   });
 
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.PostReducer);
+  const { loading , redirect} = useSelector((state) => state.PostReducer);
   const { post, postStatus } = useSelector((state) => state.FetchSinglePost);
   const {updateErrors} = useSelector((state) => state.UpdatePost)
   useEffect(() => {
@@ -53,7 +54,11 @@ const EditPost = () => {
       updateErrors.map(error => toast.error(error.msg))
     }
   },[updateErrors])
-
+  useEffect(() => {
+    if(redirect){
+      push('/dashboard')
+    }
+  }, [redirect]);
 
 
   return (
