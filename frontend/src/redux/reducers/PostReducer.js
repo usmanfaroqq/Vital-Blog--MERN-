@@ -12,6 +12,7 @@ import {
   POST_REQUEST,
   POST_RESET,
   SET_UPDATE_ERRORS,
+  REMOVE_UPDATE_ERRORS
 } from "../types/PostTypes";
 
 const initState = {
@@ -85,7 +86,10 @@ export const UpdatePost = (state = initState, action) => {
   const { type, payload } = action;
   if (type === SET_UPDATE_ERRORS) {
     return { ...state, updateErrors: payload };
-  } else {
+  } else if (type === REMOVE_UPDATE_ERRORS){
+    return { ...state, updateErrors: [] };
+  }
+  else {
     return state;
   }
 };

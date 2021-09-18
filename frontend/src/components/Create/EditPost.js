@@ -5,8 +5,10 @@ import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSinglePost, updatePost } from "../../redux/asyncMethods/PostMethods";
-import { POST_RESET } from "../../redux/types/PostTypes";
+import { fetchSinglePost, updatePost} from "../../redux/asyncMethods/PostMethods";
+import { POST_RESET ,  REMOVE_UPDATE_ERRORS } from "../../redux/types/PostTypes";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const EditPost = () => {
   const { id } = useParams();
@@ -42,9 +44,15 @@ const EditPost = () => {
       title: editState.title,
       body: value,
       description: editState.description,
+      id: post._id
     }))
   }
 
+  useEffect(() => {
+    if(updateErrors.length > 0){
+      updateErrors.map(error => toast.error(error.msg))
+    }
+  },[updateErrors])
 
 
 
@@ -54,6 +62,18 @@ const EditPost = () => {
         <title>Edit Post - Vital Blog</title>
         <meta name="edit-post" content="edit-post" />
       </Helmet>
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+            color: "red",
+            fontSize: "1.5rem",
+          },
+        }}
+      />
       <div className="create__post">
         <Container>
           <Row>
