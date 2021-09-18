@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 const EditCoverImage = () => {
+  const {id} = useParams();
   const [state, setState] = useState({
     image: "",
     imagePreview: "",
