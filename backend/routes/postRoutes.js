@@ -1,7 +1,6 @@
 const express = require("express");
 const postRouter = express.Router();
 const postControllers = require("../controllers/postControllers");
-// const {updateValidation} = require("../controllers/postControllers");
 
 
 postRouter.post("/createNew_post", postControllers.createPost);
