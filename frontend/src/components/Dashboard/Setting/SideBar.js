@@ -7,12 +7,12 @@ const SideBar = () => {
     <div className="sidebar">
       <Container>
         <Row>
-          <Col md={3}>
+          <Col md={4}>
             <div className="sidebar__setting">
               <h1>Settings</h1>
               <div className="sidebar__setting-list">
                   <li  className="links">
-                    <Link className="links" to="#">Profile</Link>
+                    <Link className="links" to="/me/profile">Profile</Link>
                   </li>
                   <li className="links">
                     <Link className="links" to="#">Design</Link>
