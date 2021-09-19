@@ -13,14 +13,10 @@ import CreatePost from "./components/Create/CreatePost";
 import UpperNavbar from "./components/common/Navbar/UpperNavbar";
 import EditPost from "./components/Create/EditPost";
 import UnderConstruction from "./components/common/UnderConstruction/UnderConstruction";
-import PostEditPageProgress from "./skelatons/PostEditPageProgress";
 import EditCoverImage from "./components/Create/EditCoverImage";
 import SideBar from "./components/Dashboard/Setting/SideBar";
 import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/ProfileSetting";
 
-
-// under construction routes
-// import ProfileSetting from "./components/Setting/ProfileSetting/ProfileSetting";
 
 
 
