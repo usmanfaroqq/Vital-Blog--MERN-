@@ -4,7 +4,8 @@ const dbConnect = require("./config/database");
 const authRouter = require('./routes/userRoutes');
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const postRouter = require('./routes/postRoutes')
+const postRouter = require('./routes/postRoutes');
+const profileRouter = require("./routes/profileRoutes");
 
 // Calling a function
 const app = express();
@@ -19,7 +20,8 @@ app.get("/", (req, res) => {
 }); // Home Route
 
 app.use('/', authRouter) // Register/login Function
-app.use('/', postRouter) // post Route
+app.use('/', postRouter) // post/get Route
+app.use('/', profileRouter) // post/get Route
 
 
 

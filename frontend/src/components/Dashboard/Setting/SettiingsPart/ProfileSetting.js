@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SideBar from "../SideBar";
 import { Helmet } from "react-helmet";
+import {useSelector, useDispatch} from "react-redux"
 
 const ProfileSetting = () => {
+  const [nameState, setNameState] = useState('')
+  const {user: {name}} = useSelector((state) => state.AuthReducer);
+  useEffect(() => {
+    setNameState(name)
+  }, [])
   return (
     <Container>
       <Helmet>
@@ -24,6 +30,9 @@ const ProfileSetting = () => {
                   type="text"
                   className="profile__name-Input"
                   placeholder="Name"
+                  name="name"
+                  value={nameState}
+                  onChange={(e) => setNameState(e.target.value)}
                 />
               </div>
               <p className="profile__name-text">
