@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 const fs = require("fs");
 const { htmlToText } = require("html-to-text");
 
+
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {

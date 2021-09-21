@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { allHomePosts } from "../../redux/asyncMethods/HomeGetAllPostMethod";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import test from "../../asset/images/Map Seller Website.png";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -20,10 +19,7 @@ const HomeAllPosts = () => {
     dispatch(allHomePosts(page));
   }, []);
 
-  console.log("page", page);
-  console.log("posts", posts);
-  console.log("count", count);
-  console.log("perPage", perPage);
+
   return (
     <div>
       <Container>
@@ -48,7 +44,7 @@ const HomeAllPosts = () => {
                       </Link>
                     </Card.Title>
                     <Card.Text className="blogCard-shortDes">
-                      {post.body.slice(0,90)} <Link className="blogCard-title-link">read more....</Link>
+                      {(post.body.slice(0,90)).replace(/<[^>]*>/g)}<Link className="blogCard-title-link">read more....</Link>
                     </Card.Text>
                     <Card.Text className="blogCard-author">
                      Posted at {moment(post.createdAt).format('ll')} by {post.userName}
