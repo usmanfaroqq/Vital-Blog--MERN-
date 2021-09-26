@@ -37,7 +37,7 @@ export const singlePostDetails = (id) => {
     try {
       const {
         data: { postWithDetails, comments, },
-      } = await axios.get(`/post/details/${id}`);
+      } = await axios.get(`/detailsPost/${id}`);
       
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: SET_POST_DETAILS, payload: postWithDetails });

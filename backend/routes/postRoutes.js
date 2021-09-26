@@ -12,7 +12,7 @@ postRouter.get("/posts/:id/:page", postControllers.fetchPosts);
 postRouter.get("/post/:id",  postControllers.fetchSinglePost);
 postRouter.get("/delete-post/:id",  postControllers.deletePost);
 postRouter.get("/home/:page",  homeControllers.homeAllPost);
-postRouter.get("/post/details/:id",  homeControllers.singlePostDetails);
+postRouter.get("/detailsPost/:id",  homeControllers.singlePostDetails);
 
 
 module.exports = postRouter;
