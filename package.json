@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  },
+  "scripts": {
+    "frontend": "npm start --prefix frontend",
+    "backend": "npm start --prefix backend",
+    "build":"npm run build --prefix frontend",
+    "clientInstall": "npm install --prefix frontend",
+    "heroku-postbuild": "npm run clientInstall && npm run build",
+    "dev": "concurrently \" npm run backend  \" \" npm run frontend \""
+  }
+}
