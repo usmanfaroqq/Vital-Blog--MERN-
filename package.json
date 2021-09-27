@@ -8,7 +8,7 @@
   },
 
   "scripts": {
-    "start":"node server.js",
+    "start":"node server.js --prefix backend",
     "frontend": "npm start --prefix frontend",
     "backend": "npm start --prefix backend",
     "clientInstall": "npm install --prefix frontend",
