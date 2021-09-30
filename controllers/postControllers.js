@@ -6,6 +6,7 @@ const fs = require("fs");
 const { htmlToText } = require("html-to-text");
 
 
+
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {
@@ -46,7 +47,7 @@ const createPost = (req, res) => {
       return res.status(400).json({ errors, files });
     } else {
       const newPath =
-        __dirname + `./../../frontend/ build/images/${files.image.name}`;
+        __dirname + `/../frontend/build/images/${files.image.name}`;
       fs.copyFile(files.image.path, newPath, async (error) => {
         if (!error) {
           try {
@@ -72,6 +73,8 @@ const createPost = (req, res) => {
     }
   });
 };
+
+
 
 // fetch post
 const fetchPosts = async (req, res) => {
@@ -105,6 +108,8 @@ const fetchSinglePost = async (req, res) => {
   }
 };
 
+
+
 // updating post validation
 const updateValidation = [
   body("title")
@@ -129,6 +134,8 @@ const updateValidation = [
     .withMessage("Please give a short description to your content"),
 ];
 
+
+
 // updating post
 const updatePost = async (req, res) => {
   const { title, body, description, id } = req.body;
@@ -148,6 +155,8 @@ const updatePost = async (req, res) => {
     }
   }
 };
+
+
 // updating image
 const updateImage = async (req, res) => {
   const imageForm = formidable({ multiples: true });
@@ -172,7 +181,7 @@ const updateImage = async (req, res) => {
       return res.status(400).json({ errors: updateImageErrors });
     } else {
       const newPath =
-        __dirname + `./../../frontend/ build/images/${files.image.name}`;
+        __dirname + `/../frontend/build/images/${files.image.name}`;
       fs.copyFile(files.image.path, newPath, async (error) => {
         try {
           const response = await postSchema.findByIdAndUpdate(id, {
@@ -188,6 +197,7 @@ const updateImage = async (req, res) => {
     }
   });
 };
+
 
 // deleting post
 const deletePost = async (req, res) => {
