@@ -5,3 +5,13 @@ Vital Blog is an online publishing platform.Vital Blog is a place to read articl
 ## Demo :  [Vital Blog](https://vital-blog.herokuapp.com/)
 
 ![Vital Blog](https://user-images.githubusercontent.com/76783473/136505023-0f0975b1-9b84-4524-bc69-4ddcd206a069.png)
+
+## Features
+
+- User can register their account
+- User will be validated through jwt token, User will be logged out if the user has been inactive for seven day's.
+- Anyone can write articles, to write an articles user must need to have an account, 
+- Live previews
+- Fullscreen mode
+- Cross platform
+
